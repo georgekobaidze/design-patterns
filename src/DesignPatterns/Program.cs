@@ -1,4 +1,5 @@
-﻿using DesignPatterns.Solid.OpenClosed;
+﻿using DesignPatterns.Solid.LiskovSubstitution;
+using DesignPatterns.Solid.OpenClosed;
 using DesignPatterns.Solid.OpenClosed.Enums;
 using DesignPatterns.Solid.OpenClosed.Filters.Bad;
 using DesignPatterns.Solid.OpenClosed.Filters.Good;
@@ -69,6 +70,18 @@ namespace DesignPatterns
             foreach (var vehicle in filteredVehiclesByColorAndBrand)
                 Console.WriteLine(vehicle.Brand.ToString());
 
+            #endregion
+
+            #region Liskov Substitution
+            var rectangle = new Rectangle(5, 2);
+            Console.WriteLine(rectangle);
+
+            Rectangle square = new Square(); // It should work without any side effects, but it won't.
+            square.Width = 4;
+
+            Console.WriteLine(square);
+
+            //To fix this, we can make rectangle properties virtual and override them in a square class.
             #endregion
         }
     }
