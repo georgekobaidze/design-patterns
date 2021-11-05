@@ -1,4 +1,9 @@
-﻿using DesignPatterns.Solid.LiskovSubstitution;
+﻿using DesignPatterns.Creational.Builder.Classic.Bad;
+using DesignPatterns.Creational.Builder.Classic.Good;
+using DesignPatterns.Creational.Builder.Faceted;
+using DesignPatterns.Creational.Builder.Faceted.Builders;
+using DesignPatterns.Creational.Builder.Stepwise;
+using DesignPatterns.Solid.LiskovSubstitution;
 using DesignPatterns.Solid.OpenClosed;
 using DesignPatterns.Solid.OpenClosed.Enums;
 using DesignPatterns.Solid.OpenClosed.Filters.Bad;
@@ -82,6 +87,54 @@ namespace DesignPatterns
             Console.WriteLine(square);
 
             //To fix this, we can make rectangle properties virtual and override them in a square class.
+            #endregion
+
+            #region Builder
+
+            #region Classic
+            var nissan = new BadCarBuilder()
+                .SetMake("Nissan")
+                .SetModel("Juke")
+                .SetManufactureDate("04/06/2015")
+                .Build();
+
+            Console.WriteLine(nissan);
+
+            var builder = new CarBuilder();
+            var ford = new FordEscapeBuilder(builder).Build();
+            Console.WriteLine(ford);
+            #endregion
+
+            #region Stepwise
+            var airplane = AirplaneBuilder
+                .Create()
+                .OfType(AirplaneType.Public)
+                .WithSeatsNumber(150)
+                .Build();
+
+            Console.WriteLine(airplane);
+            #endregion
+
+            #region Facade
+            Person personBuilder = new PersonBuilder()
+                .Works
+                    .At("Amazon")
+                    .AsA("Software Engineer")
+                    .Earning(120000)
+                .Lives
+                    .At("Pike Street")
+                    .WithPostalCode("5571")
+                    .In("Seattle");
+
+            Console.WriteLine(personBuilder);
+
+            // The only side effect here is that method execution sequance isn't logically restricted
+            // So we can write something like:
+            //var pb = new PersonBuilder().Lives.Lives.Works.Works;
+
+
+            #endregion
+
             #endregion
         }
     }
