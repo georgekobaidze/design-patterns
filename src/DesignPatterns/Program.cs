@@ -3,6 +3,11 @@ using DesignPatterns.Creational.Builder.Classic.Good;
 using DesignPatterns.Creational.Builder.Faceted;
 using DesignPatterns.Creational.Builder.Faceted.Builders;
 using DesignPatterns.Creational.Builder.Stepwise;
+using DesignPatterns.Creational.Factory.AbstractFactory;
+using DesignPatterns.Creational.Factory.AbstractFactory.ConcreteFactories;
+using DesignPatterns.Creational.Factory.AbstractFactory.Enums;
+using DesignPatterns.Creational.Factory.FactoryMethod.Bad;
+using DesignPatterns.Creational.Factory.FactoryMethod.Good.FactoryMethodV2;
 using DesignPatterns.Solid.LiskovSubstitution;
 using DesignPatterns.Solid.OpenClosed;
 using DesignPatterns.Solid.OpenClosed.Enums;
@@ -12,6 +17,10 @@ using DesignPatterns.Solid.OpenClosed.Filters.Good.Specifications;
 using DesignPatterns.Solid.SingleResponsibility;
 using System;
 using System.Collections.Generic;
+
+using BadFactoryMethod = DesignPatterns.Creational.Factory.FactoryMethod.Bad;
+using GoodFactoryMethodV1 = DesignPatterns.Creational.Factory.FactoryMethod.Good.FactoryMethodV1;
+using GoodFactoryMethodV3 = DesignPatterns.Creational.Factory.FactoryMethod.Good.FactoryMethodV3;
 
 namespace DesignPatterns
 {
@@ -132,6 +141,47 @@ namespace DesignPatterns
             // So we can write something like:
             //var pb = new PersonBuilder().Lives.Lives.Works.Works;
 
+
+            #endregion
+
+            #endregion
+
+            #region Factory
+            #region Factory Method
+
+            // BAD PRACTICE ALERT!
+            var badPoint1 = new BadFactoryMethod.Point(2, 5, CoordinateSystem.Cartesian);
+            var badPoint2 = new BadFactoryMethod.Point(15, Math.PI / 6, CoordinateSystem.Polar);
+
+            // Now with the factory method:
+            var point1 = GoodFactoryMethodV1.Point.NewCartesianPoint(2, 5);
+            var point2 = GoodFactoryMethodV1.Point.NewPolarPoint(15, Math.PI / 6);
+            Console.WriteLine(point1);
+            Console.WriteLine(point2);
+
+            // Improvement with a separate factory:
+            var point3 = PointFactory.NewCartesianPoint(2, 5);
+            var point4 = PointFactory.NewPolarPoint(15, Math.PI / 6);
+            Console.WriteLine(point3);
+            Console.WriteLine(point4);
+            // This approach has the only caviat, we need to make the constructor of Point class public
+
+            // Further improvement using inner factory:
+            var point5 = GoodFactoryMethodV3.Point.Factory.NewCartesianPoint(2, 5);
+            var point6 = GoodFactoryMethodV3.Point.Factory.NewPolarPoint(15, Math.PI / 6);
+            Console.WriteLine(point5);
+            Console.WriteLine(point6);
+
+            #endregion
+
+            #region Abstract Factory
+            var fordClient = new CarClient(new FordFactory(), Segment.Full);
+            var chevroletClient = new CarClient(new ChevroletFactory(), Segment.Compact);
+
+            var fordName = fordClient.GetSuvName();
+            var chevroletName = chevroletClient.GetSuvName();
+
+            Console.WriteLine($"Manufactured cars are:\n{fordName}\n{chevroletName}");
 
             #endregion
 
