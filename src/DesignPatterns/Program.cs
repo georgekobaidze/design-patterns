@@ -8,6 +8,7 @@ using DesignPatterns.Creational.Factory.AbstractFactory.ConcreteFactories;
 using DesignPatterns.Creational.Factory.AbstractFactory.Enums;
 using DesignPatterns.Creational.Factory.FactoryMethod.Bad;
 using DesignPatterns.Creational.Factory.FactoryMethod.Good.FactoryMethodV2;
+using DesignPatterns.Creational.Prototype.Bad;
 using DesignPatterns.Solid.LiskovSubstitution;
 using DesignPatterns.Solid.OpenClosed;
 using DesignPatterns.Solid.OpenClosed.Enums;
@@ -21,6 +22,12 @@ using System.Collections.Generic;
 using BadFactoryMethod = DesignPatterns.Creational.Factory.FactoryMethod.Bad;
 using GoodFactoryMethodV1 = DesignPatterns.Creational.Factory.FactoryMethod.Good.FactoryMethodV1;
 using GoodFactoryMethodV3 = DesignPatterns.Creational.Factory.FactoryMethod.Good.FactoryMethodV3;
+
+using BadPrototype = DesignPatterns.Creational.Prototype.Bad;
+using GoodPrototypeCopyConstructors = DesignPatterns.Creational.Prototype.Good.CopyConstructors;
+using GoodPrototypeExplicitDeepCopyInterface = DesignPatterns.Creational.Prototype.Good.ExplicitDeepCopyInterface;
+using GoodPrototypeSerializer = DesignPatterns.Creational.Prototype.Good.Serialization;
+using DesignPatterns.Creational.Prototype.Good.Serialization;
 
 namespace DesignPatterns
 {
@@ -184,6 +191,69 @@ namespace DesignPatterns
             Console.WriteLine($"Manufactured cars are:\n{fordName}\n{chevroletName}");
 
             #endregion
+
+            #endregion
+
+            #region Prototype
+            // BAD PRACTICE ALERT! First let's try to clone object with the single dumbest method ever
+            var student1 = new BadPrototype.Student(
+                "Bob Jefferson",
+                new[] { "Calculus", "Physics" },
+                new BadPrototype.ContactInfo("11111111", "Jefferson st. 11"));
+
+            var student2 = student1;
+            student2.FullName = "Michael Jefferson"; // Seeya later, Bob!
+
+            Console.WriteLine(student1);
+            Console.WriteLine(student2);
+
+            // BAD PRACTICE ALERT! Next let's try with ICloneable, which isn't recommended to use
+            var student3 = (BadPrototype.Student)student1.Clone();
+            student3.FullName = "Steve Jefferson";
+            student3.ContactInfo.PhoneNumber = "33333333";
+            Console.WriteLine(student3);
+            Console.WriteLine(student1);
+
+            // Now let's try the same using copy constructors
+            var student4 = new GoodPrototypeCopyConstructors.Student(
+                "Colby Robbins",
+                new[] { "Linear Algebra", "Machine Learning" },
+                new GoodPrototypeCopyConstructors.ContactInfo("444444444", "Robbins st. 55"));
+
+            Console.WriteLine(student4);
+
+            var student5 = new GoodPrototypeCopyConstructors.Student(student4);
+            student5.ContactInfo.Address = "Robbins st. 77";
+            student5.Subjects = new[] { "Genetic Algorithms" };
+
+            Console.WriteLine(student5);
+
+            // There is another method with the explicit deep copy interface
+            var student6 = new GoodPrototypeExplicitDeepCopyInterface.Student(
+                "Dean Cooper",
+                new[] { "Linear Algebra", "Machine Learning" },
+                new GoodPrototypeExplicitDeepCopyInterface.ContactInfo("66666666", "Cooper st. 54"));
+
+            Console.WriteLine(student6);
+
+            var student7 = student6.DeepCopy();
+            student7.FullName = "James Butler";
+            student7.ContactInfo.PhoneNumber = "77777777";
+
+            Console.WriteLine(student7);
+
+            // The same job can be done using serialization techniques:
+            var student8 = new GoodPrototypeSerializer.Student(
+                "Holly Adams",
+                new[] { "Machine Learning" },
+                new GoodPrototypeSerializer.ContactInfo("8888888", "Adams st. 33"));
+
+            Console.WriteLine(student8);
+
+            var student9 = student8.DeepCopy();
+            student9.ContactInfo.PhoneNumber = "99999999";
+
+            Console.WriteLine(student9);
 
             #endregion
         }
