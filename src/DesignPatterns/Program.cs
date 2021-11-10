@@ -258,21 +258,53 @@ namespace DesignPatterns
             #endregion
 
             #region Singleton
-            var b1 = LoadBalancer.GetLoadBalancer();
-            var b2 = LoadBalancer.GetLoadBalancer();
-            var b3 = LoadBalancer.GetLoadBalancer();
-            var b4 = LoadBalancer.GetLoadBalancer();
 
-            // Confirm that they refer to the single object
+            // First let's compare whether or not all non singleton instances are the same:
+            var nsb1 = new NonSingletonLoadBalancer();
+            var nsb2 = new NonSingletonLoadBalancer();
+            var nsb3 = new NonSingletonLoadBalancer();
+            var nsb4 = new NonSingletonLoadBalancer();
+            if (nsb1 == nsb2 && nsb2 == nsb3 && nsb3 == nsb4)
+                Console.WriteLine("Non singleton instances are the same\n");
+            else
+                Console.WriteLine("Non singleton instances are NOT the same\n");
+
+            // Then do the same for singleton instances:
+            var b1 = SingletonLoadBalancer.GetLoadBalancer();
+            var b2 = SingletonLoadBalancer.GetLoadBalancer();
+            var b3 = SingletonLoadBalancer.GetLoadBalancer();
+            var b4 = SingletonLoadBalancer.GetLoadBalancer();
             if (b1 == b2 && b2 == b3 && b3 == b4)
-                Console.WriteLine("Same instance\n");
+                Console.WriteLine("Singleton instances are the same\n");
+            else
+                Console.WriteLine("Singleton instances are NOT the same\n");
 
-            // Send 10 request to the server
-            var balancer = LoadBalancer.GetLoadBalancer();
+            // Let's imagine, having two load balancers working together for scalability
+
+            // First send 10 requests to the non-singleton load balancers
+            Console.WriteLine("Non singleton load balancers receive requests:");
+            var nonSingletonBalancer1 = new NonSingletonLoadBalancer();
+            var nonSingletonBalancer2 = new NonSingletonLoadBalancer();
             for (int i = 0; i < 10; i++)
             {
-                var server = balancer.NextServer.Name;
-                Console.WriteLine($"Dispatch request to: {server}");
+                var nonSingletonServer1 = nonSingletonBalancer1.NextServer.Name;
+                Console.WriteLine($"Dispatch request to: {nonSingletonServer1}");
+
+                var nonSingletonServer2 = nonSingletonBalancer2.NextServer.Name;
+                Console.WriteLine($"Dispatch request to: {nonSingletonServer2}");
+            }
+
+            // Now send 10 requests to the singleton load balancers
+            Console.WriteLine("\nSingleton load balancers receive requests:");
+            var balancer3 = SingletonLoadBalancer.GetLoadBalancer();
+            var balancer4 = SingletonLoadBalancer.GetLoadBalancer();
+            for (int i = 0; i < 10; i++)
+            {
+                var server3 = balancer3.NextServer.Name;
+                Console.WriteLine($"Dispatch request to: {server3}");
+
+                var server4 = balancer4.NextServer.Name;
+                Console.WriteLine($"Dispatch request to: {server4}");
             }
             #endregion
         }
