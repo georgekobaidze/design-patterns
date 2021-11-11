@@ -1,6 +1,6 @@
 ﻿using DesignPatterns.Solid.SingleResponsibility;
 using DesignPatterns.Solid.SingleResponsibility.Good;
-﻿using DesignPatterns.Creational.Builder.Classic.Bad;
+using DesignPatterns.Creational.Builder.Classic.Bad;
 using DesignPatterns.Creational.Builder.Classic.Good;
 using DesignPatterns.Creational.Builder.Faceted;
 using DesignPatterns.Creational.Builder.Faceted.Builders;
@@ -16,7 +16,6 @@ using DesignPatterns.Solid.OpenClosed.Enums;
 using DesignPatterns.Solid.OpenClosed.Filters.Bad;
 using DesignPatterns.Solid.OpenClosed.Filters.Good;
 using DesignPatterns.Solid.OpenClosed.Filters.Good.Specifications;
-using DesignPatterns.Solid.SingleResponsibility;
 using System;
 using System.Collections.Generic;
 
