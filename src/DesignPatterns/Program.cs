@@ -13,8 +13,6 @@ using DesignPatterns.Creational.Factory.FactoryMethod.Good.FactoryMethodV2;
 using DesignPatterns.Solid.LiskovSubstitution;
 using DesignPatterns.Solid.OpenClosed;
 using DesignPatterns.Solid.OpenClosed.Enums;
-using DesignPatterns.Solid.OpenClosed.Filters.Bad;
-using DesignPatterns.Solid.OpenClosed.Filters.Good;
 using DesignPatterns.Solid.OpenClosed.Filters.Good.Specifications;
 using System;
 using System.Collections.Generic;
@@ -29,6 +27,9 @@ using GoodPrototypeExplicitDeepCopyInterface = DesignPatterns.Creational.Prototy
 using GoodPrototypeSerializer = DesignPatterns.Creational.Prototype.Good.Serialization;
 using DesignPatterns.Creational.Prototype.Good.Serialization;
 using DesignPatterns.Creational.Singleton;
+
+using BadOpenClosed = DesignPatterns.Solid.OpenClosed.Filters.Bad;
+using GoodOpenClosed = DesignPatterns.Solid.OpenClosed.Filters.Good;
 
 namespace DesignPatterns
 {
@@ -62,7 +63,7 @@ namespace DesignPatterns
             };
 
             // BAD PRACTICE ALERT:
-            var badFilter = new BadVehicleFilter();
+            var badFilter = new BadOpenClosed.VehicleFilter();
 
             // First let's filter it by brand
             var filteredVehiclesByBrand = badFilter.FilterByBrand(vehiclesAtDealership, Brand.Ford);
@@ -77,7 +78,7 @@ namespace DesignPatterns
             // This will apply to any other property
 
             //Now let's use the specification pattern:
-            var goodFilter = new GoodFilter();
+            var goodFilter = new GoodOpenClosed.VehicleFilter();
             var filteredVehicles = goodFilter.Filter(vehiclesAtDealership, new ColorSpecification(Color.Blue));
             foreach (var vehicle in filteredVehicles)
                 Console.WriteLine(vehicle.Brand.ToString());

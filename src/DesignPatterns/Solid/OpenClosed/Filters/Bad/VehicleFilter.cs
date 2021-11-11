@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DesignPatterns.Solid.OpenClosed.Filters.Bad
 {
-    public class BadVehicleFilter
+    public class VehicleFilter
     {
         public IEnumerable<Vehicle> FilterByBrand(IEnumerable<Vehicle> vehicles, Brand brand)
         {
