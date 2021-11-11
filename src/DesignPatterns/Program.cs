@@ -1,3 +1,5 @@
+﻿using DesignPatterns.Solid.SingleResponsibility;
+using DesignPatterns.Solid.SingleResponsibility.Good;
 ﻿using DesignPatterns.Creational.Builder.Classic.Bad;
 using DesignPatterns.Creational.Builder.Classic.Good;
 using DesignPatterns.Creational.Builder.Faceted;

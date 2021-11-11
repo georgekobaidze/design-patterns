@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace DesignPatterns.Solid.SingleResponsibility
+namespace DesignPatterns.Solid.SingleResponsibility.Good
 {
     public class InvoiceUtility
     {
