@@ -7,7 +7,7 @@
 
         public override string ToString()
         {
-            return $"Airplane type: {Type.ToString()}\nSeats count: {SeatsCount}";
+            return $"Airplane type: {Type}\nSeats count: {SeatsCount}";
         }
     }
 }

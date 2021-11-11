@@ -30,6 +30,7 @@ using DesignPatterns.Creational.Singleton;
 
 using BadOpenClosed = DesignPatterns.Solid.OpenClosed.Filters.Bad;
 using GoodOpenClosed = DesignPatterns.Solid.OpenClosed.Filters.Good;
+using System.IO;
 
 namespace DesignPatterns
 {
@@ -45,8 +46,9 @@ namespace DesignPatterns
             shoppingCart.Add(new ShoppingItem { Id = 124, Name = "Mouse", Price = 300 });
             shoppingCart.Add(new ShoppingItem { Id = 125, Name = "Monitor", Price = 2200 });
 
+            var outputFilePath = Path.GetFullPath(@"..\..\..\..\..\Output.txt");
             var utils = new InvoiceUtility();
-            utils.SaveToFile(shoppingCart, "C:\\Users\\Giorgi\\Desktop\\Invoice.txt", true);
+            utils.SaveToFile(shoppingCart, outputFilePath, true);
 
             #endregion
 

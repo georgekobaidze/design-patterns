@@ -29,7 +29,6 @@ namespace DesignPatterns.Creational.Factory.AbstractFactory.ConcreteFactories
                     return new FordFullSuv();
                 case Segment.Compact:
                     return null;
-                    break;
                 default:
                     throw new Exception("Unknown segment type");
             }
