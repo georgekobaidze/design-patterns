@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace DesignPatterns.Solid.SingleResponsibility
+namespace DesignPatterns.Solid.SingleResponsibility.Good
 {
     public class ShoppingCart
     {
@@ -40,26 +39,6 @@ namespace DesignPatterns.Solid.SingleResponsibility
             info.AppendLine($"\nTotal price: {_totalPrice}$");
 
             return info.ToString();
-        }
-
-
-        // BAD PRACTICE ALERT: the class has too many responsibilities, including executing tasks which are irrelevant
-        public void SaveToFile(string fileName, bool overwrite = false)
-        {
-            if (overwrite || !File.Exists(fileName))
-                File.WriteAllText(fileName, GetInvoiceInfo());
-        }
-
-        public void Print()
-        {
-            var text = GetInvoiceInfo();
-            // Send this text to the printer
-        }
-
-        public void Send(string emailAddress)
-        {
-            var text = GetInvoiceInfo();
-            // Create smtp client and implement a logic to send an email to the customer
         }
     }
 }

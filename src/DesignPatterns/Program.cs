@@ -1,4 +1,5 @@
 ﻿using DesignPatterns.Solid.SingleResponsibility;
+using DesignPatterns.Solid.SingleResponsibility.Good;
 using System;
 
 namespace DesignPatterns
