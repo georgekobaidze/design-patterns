@@ -2,7 +2,7 @@
 
 namespace DesignPatterns.Solid.InterfaceSegregation.Good.Classes
 {
-    public class ElectricCar : IBaseVehicle, IElectricVehicle
+    public class ElectricCar : IElectricVehicle
     {
         public void Accelerate()
         {
