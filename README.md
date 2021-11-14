@@ -23,7 +23,7 @@ The Gamma Categorization:
 There is one more folder in the root of the main project called Solid. This isn't particularly yet another category of design patterns, but it's still critical to understand SOLID principles before we actually dive deep into design patterns. The reason is simple: every design pattern is based on those principles, so it will be much better if you start by understanding SOLID principles first.
 You can check out the usage of some of the examples in the **program.cs** file, which demonstrates how the client (for example a developer using our libraries) would use them.
 
-## Disclaimer
+## Important
 Most of the examples represented here are created by myself, but they're simple and general to make sure that whoever reviews the code, will be focused on how design patterns work instead of figuring out the specifics of the context behind the code, so some of the examples might look like copied from other sources, which definitely aren't.
 Also note that each example is just a one application of each design pattern, which doesn't mean that that's the universal way of implementing it. Actually there can be many more interpretations, depending on the context and requirements.
 
