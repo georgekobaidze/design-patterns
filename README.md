@@ -18,7 +18,7 @@ As you can see in the source code, the main project is divided into separate gro
 You might notice that the last 3 parts are the general categories of design patterns [check out the link for more information about Gamma Categorization](https://en.wikipedia.org/wiki/Design_Patterns#Patterns_by_type). In each of these folders there are subfolders dedicated to every design pattern in that particular category. Examples are further divided into 2 versions: a bad one, which contains the code written with a bad practices and a good one, which is exactly the same example, but refactored using design pattern(s).
 
 The Gamma Categorization:
-<a href="https://imgur.com/nPdv8sH"><img src="https://imgur.com/nPdv8sH" title="source: imgur.com" /></a>
+<a href="https://imgur.com/nPdv8sH"><img src="https://i.imgur.com/nPdv8sH.png" title="source: imgur.com" /></a>
 
 There is one more folder in the root of the main project called Solid. This isn't particularly yet another category of design patterns, but it's still critical to understand SOLID principles before we actually dive deep into design patterns. The reason is simple: every design pattern is based on those principles, so it will be much better if you start by understanding SOLID principles first.
 You can check out the usage of some of the examples in the **program.cs** file, which demonstrates how the client (for example a developer using our libraries) would use them.
