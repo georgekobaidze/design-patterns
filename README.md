@@ -1,7 +1,7 @@
 # Design Patterns Demo Repository
 
 ## Technologies
-.NET 5
+.NET 6
 
 ## Introduction
 Most of the software developers are familiar with or, at least, heard of design patterns, but only few of them actually know exactly what are they, why are they so popular and how do they actually make our life easier by applying them in our code.
