@@ -1,7 +1,6 @@
-﻿namespace DesignPatterns.Creational.Prototype.Good.ExplicitDeepCopyInterface
+﻿namespace DesignPatterns.Creational.Prototype.Good.ExplicitDeepCopyInterface;
+
+public interface IPrototype<T>
 {
-    public interface IPrototype<T>
-    {
-        T DeepCopy();
-    }
+    T DeepCopy();
 }

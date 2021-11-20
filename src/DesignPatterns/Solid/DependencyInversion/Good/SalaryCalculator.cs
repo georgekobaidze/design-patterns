@@ -1,7 +1,6 @@
-﻿namespace DesignPatterns.Solid.DependencyInversion.Good
+﻿namespace DesignPatterns.Solid.DependencyInversion.Good;
+
+public class SalaryCalculator : ISalaryCalculator
 {
-    public class SalaryCalculator : ISalaryCalculator
-    {
-        public decimal CalculateSalary(int hours, decimal rate) => hours * rate;
-    }
+    public decimal CalculateSalary(int hours, decimal rate) => hours * rate;
 }

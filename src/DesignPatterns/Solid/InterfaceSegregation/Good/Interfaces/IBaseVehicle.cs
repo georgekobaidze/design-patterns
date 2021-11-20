@@ -1,10 +1,9 @@
-﻿namespace DesignPatterns.Solid.InterfaceSegregation.Good.Interfaces
+﻿namespace DesignPatterns.Solid.InterfaceSegregation.Good.Interfaces;
+
+public interface IBaseVehicle
 {
-    public interface IBaseVehicle
-    {
-        void StartEngine();
-        void StopEngine();
-        void Accelerate();
-        void Brake();
-    }
+    void StartEngine();
+    void StopEngine();
+    void Accelerate();
+    void Brake();
 }

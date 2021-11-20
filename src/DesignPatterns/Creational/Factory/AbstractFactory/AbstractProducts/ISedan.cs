@@ -1,7 +1,6 @@
-﻿namespace DesignPatterns.Creational.Factory.AbstractFactory.AbstractProducts
+﻿namespace DesignPatterns.Creational.Factory.AbstractFactory.AbstractProducts;
+
+public interface ISedan
 {
-    public interface ISedan
-    {
-        string Name();
-    }
+    string Name();
 }

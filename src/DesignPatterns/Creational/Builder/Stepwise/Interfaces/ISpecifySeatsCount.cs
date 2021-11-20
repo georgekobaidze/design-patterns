@@ -1,7 +1,6 @@
-﻿namespace DesignPatterns.Creational.Builder.Stepwise.Interfaces
+﻿namespace DesignPatterns.Creational.Builder.Stepwise.Interfaces;
+
+public interface ISpecifySeatsCount
 {
-    public interface ISpecifySeatsCount
-    {
-        IBuildAirplane WithSeatsNumber(int count);
-    }
+    IBuildAirplane WithSeatsNumber(int count);
 }
