@@ -1,7 +1,6 @@
-﻿namespace DesignPatterns.Creational.Factory.AbstractFactory.AbstractProducts
+﻿namespace DesignPatterns.Creational.Factory.AbstractFactory.AbstractProducts;
+
+public interface ISuv
 {
-    public interface ISuv
-    {
-        string Name();
-    }
+    string Name();
 }

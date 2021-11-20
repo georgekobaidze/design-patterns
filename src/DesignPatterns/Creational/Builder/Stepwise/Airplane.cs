@@ -1,13 +1,9 @@
-﻿namespace DesignPatterns.Creational.Builder.Stepwise
-{
-    public class Airplane
-    {
-        public AirplaneType Type { get; set; }
-        public int SeatsCount { get; set; }
+﻿namespace DesignPatterns.Creational.Builder.Stepwise;
 
-        public override string ToString()
-        {
-            return $"Airplane type: {Type}\nSeats count: {SeatsCount}";
-        }
-    }
+public class Airplane
+{
+    public AirplaneType Type { get; set; }
+    public int SeatsCount { get; set; }
+
+    public override string ToString() => $"Airplane type: {Type}\nSeats count: {SeatsCount}";
 }

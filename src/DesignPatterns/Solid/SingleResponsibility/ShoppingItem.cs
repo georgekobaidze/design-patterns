@@ -1,9 +1,8 @@
-﻿namespace DesignPatterns.Solid.SingleResponsibility
+﻿namespace DesignPatterns.Solid.SingleResponsibility;
+
+public class ShoppingItem
 {
-    public class ShoppingItem
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-    }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
 }

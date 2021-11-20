@@ -1,12 +1,11 @@
-﻿namespace DesignPatterns.Solid.OpenClosed.Enums
+﻿namespace DesignPatterns.Solid.OpenClosed.Enums;
+
+public enum Brand
 {
-    public enum Brand
-    {
-        Ford,
-        Chevrolet,
-        Dodge,
-        Toyota,
-        Nissan,
-        Mercedes
-    }
+    Ford,
+    Chevrolet,
+    Dodge,
+    Toyota,
+    Nissan,
+    Mercedes
 }

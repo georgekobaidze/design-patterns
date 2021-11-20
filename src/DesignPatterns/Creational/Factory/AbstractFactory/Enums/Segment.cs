@@ -1,8 +1,7 @@
-﻿namespace DesignPatterns.Creational.Factory.AbstractFactory.Enums
+﻿namespace DesignPatterns.Creational.Factory.AbstractFactory.Enums;
+
+public enum Segment
 {
-    public enum Segment
-    {
-        Full,
-        Compact
-    }
+    Full,
+    Compact
 }

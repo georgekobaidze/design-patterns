@@ -1,11 +1,10 @@
-﻿namespace DesignPatterns.Solid.OpenClosed.Enums
+﻿namespace DesignPatterns.Solid.OpenClosed.Enums;
+
+public enum VehicleType
 {
-    public enum VehicleType
-    {
-        Sedan,
-        Crossover,
-        SUV,
-        Pickup,
-        Truck
-    }
+    Sedan,
+    Crossover,
+    SUV,
+    Pickup,
+    Truck
 }

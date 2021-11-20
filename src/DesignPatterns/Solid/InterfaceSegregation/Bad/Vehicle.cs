@@ -1,44 +1,43 @@
-﻿namespace DesignPatterns.Solid.InterfaceSegregation.Bad
+﻿namespace DesignPatterns.Solid.InterfaceSegregation.Bad;
+
+public class Vehicle : IVehicle
 {
-    public class Vehicle : IVehicle
+    public void StartEngine()
     {
-        public void StartEngine()
-        {
-            // Start Engine
-        }
+        // Start Engine
+    }
 
-        public void StopEngine()
-        {
-            // Stop Engine
-        }
-        public void Accelerate()
-        {
-            // Accelerate
-        }
+    public void StopEngine()
+    {
+        // Stop Engine
+    }
+    public void Accelerate()
+    {
+        // Accelerate
+    }
 
-        public void CalculateBatteryPercentage()
-        {
-            // Calculate
-        }
+    public void CalculateBatteryPercentage()
+    {
+        // Calculate
+    }
 
-        public void RechargeBatteries()
-        {
-            // Recharge
-        }
+    public void RechargeBatteries()
+    {
+        // Recharge
+    }
 
-        public void Brake()
-        {
-            // Brake
-        }
+    public void Brake()
+    {
+        // Brake
+    }
 
-        public void AttachToTrailer()
-        {
-            // Attach
-        }
+    public void AttachToTrailer()
+    {
+        // Attach
+    }
 
-        public void DetachFromTrailer()
-        {
-            // Detach
-        }
+    public void DetachFromTrailer()
+    {
+        // Detach
     }
 }

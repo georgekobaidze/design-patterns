@@ -1,7 +1,6 @@
-﻿namespace DesignPatterns.Solid.OpenClosed.Filters.Good.Interfaces
+﻿namespace DesignPatterns.Solid.OpenClosed.Filters.Good.Interfaces;
+
+public interface ISpecification<T>
 {
-    public interface ISpecification<T>
-    {
-        bool IsSatisfied(T t);
-    }
+    bool IsSatisfied(T t);
 }

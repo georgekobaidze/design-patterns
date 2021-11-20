@@ -1,13 +1,12 @@
-﻿namespace DesignPatterns.Solid.OpenClosed.Enums
+﻿namespace DesignPatterns.Solid.OpenClosed.Enums;
+
+public enum Color
 {
-    public enum Color
-    {
-        Red,
-        Green,
-        Blue,
-        Black,
-        White,
-        Orange,
-        Purple
-    }
+    Red,
+    Green,
+    Blue,
+    Black,
+    White,
+    Orange,
+    Purple
 }
