@@ -1,8 +1,7 @@
-﻿namespace DesignPatterns.Solid.InterfaceSegregation.Good.Interfaces
+﻿namespace DesignPatterns.Solid.InterfaceSegregation.Good.Interfaces;
+
+public interface ITruck : IBaseVehicle
 {
-    public interface ITruck : IBaseVehicle
-    {
-        void AttachToTrailer();
-        void DetachFromTrailer();
-    }
+    void AttachToTrailer();
+    void DetachFromTrailer();
 }

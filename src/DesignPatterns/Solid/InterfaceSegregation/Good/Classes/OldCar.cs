@@ -1,27 +1,26 @@
 ﻿using DesignPatterns.Solid.InterfaceSegregation.Good.Interfaces;
 
-namespace DesignPatterns.Solid.InterfaceSegregation.Good.Classes
+namespace DesignPatterns.Solid.InterfaceSegregation.Good.Classes;
+
+public class OldCar : IBaseVehicle
 {
-    public class OldCar : IBaseVehicle
+    public void Accelerate()
     {
-        public void Accelerate()
-        {
-            // Accelerate
-        }
+        // Accelerate
+    }
 
-        public void Brake()
-        {
-            // Brake
-        }
+    public void Brake()
+    {
+        // Brake
+    }
 
-        public void StartEngine()
-        {
-            // Start Engine
-        }
+    public void StartEngine()
+    {
+        // Start Engine
+    }
 
-        public void StopEngine()
-        {
-            // Stop Engine
-        }
+    public void StopEngine()
+    {
+        // Stop Engine
     }
 }

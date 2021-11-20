@@ -1,37 +1,36 @@
 ﻿using DesignPatterns.Solid.InterfaceSegregation.Good.Interfaces;
 
-namespace DesignPatterns.Solid.InterfaceSegregation.Good.Classes
+namespace DesignPatterns.Solid.InterfaceSegregation.Good.Classes;
+
+public class ElectricCar : IElectricVehicle
 {
-    public class ElectricCar : IElectricVehicle
+    public void Accelerate()
     {
-        public void Accelerate()
-        {
-            // Accelerate
-        }
+        // Accelerate
+    }
 
-        public void Brake()
-        {
-            // Brake
-        }
+    public void Brake()
+    {
+        // Brake
+    }
 
-        public void CalculateBatteryPercentage()
-        {
-            // Calculate
-        }
+    public void CalculateBatteryPercentage()
+    {
+        // Calculate
+    }
 
-        public void RechargeBatteries()
-        {
-            // Recharge
-        }
+    public void RechargeBatteries()
+    {
+        // Recharge
+    }
 
-        public void StartEngine()
-        {
-            // Start Engine
-        }
+    public void StartEngine()
+    {
+        // Start Engine
+    }
 
-        public void StopEngine()
-        {
-            // Stop Engine
-        }
+    public void StopEngine()
+    {
+        // Stop Engine
     }
 }

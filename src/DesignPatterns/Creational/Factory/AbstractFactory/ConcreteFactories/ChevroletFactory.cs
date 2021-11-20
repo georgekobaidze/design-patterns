@@ -1,37 +1,24 @@
-﻿using DesignPatterns.Creational.Factory.AbstractFactory.AbstractFactories;
+﻿using System;
+using DesignPatterns.Creational.Factory.AbstractFactory.AbstractFactories;
 using DesignPatterns.Creational.Factory.AbstractFactory.AbstractProducts;
 using DesignPatterns.Creational.Factory.AbstractFactory.Enums;
 using DesignPatterns.Creational.Factory.AbstractFactory.Products;
-using System;
 
-namespace DesignPatterns.Creational.Factory.AbstractFactory.ConcreteFactories
+namespace DesignPatterns.Creational.Factory.AbstractFactory.ConcreteFactories;
+
+public class ChevroletFactory : ICarFactory
 {
-    public class ChevroletFactory : ICarFactory
+    public ISedan ManufactureSedan(Segment segment) => segment switch
     {
-        public ISedan ManufactureSedan(Segment segment)
-        {
-            switch (segment)
-            {
-                case Segment.Full:
-                    return new ChevroletFullSedan();
-                case Segment.Compact:
-                    return null;
-                default:
-                    throw new Exception("Unknown segment type");
-            }
-        }
+        Segment.Full => new ChevroletFullSedan(),
+        Segment.Compact => null,
+        _ => throw new Exception("Unknown segment type"),
+    };
 
-        public ISuv ManufactureSuv(Segment segment)
-        {
-            switch (segment)
-            {
-                case Segment.Full:
-                    return null;
-                case Segment.Compact:
-                    return new ChevroletCompactSuv();
-                default:
-                    throw new Exception("Unknown segment type");
-            }
-        }
-    }
+    public ISuv ManufactureSuv(Segment segment) => segment switch
+    {
+        Segment.Full => null,
+        Segment.Compact => new ChevroletCompactSuv(),
+        _ => throw new Exception("Unknown segment type"),
+    };
 }

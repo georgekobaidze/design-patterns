@@ -1,8 +1,7 @@
-﻿namespace DesignPatterns.Creational.Builder.Stepwise
+﻿namespace DesignPatterns.Creational.Builder.Stepwise;
+
+public enum AirplaneType
 {
-    public enum AirplaneType
-    {
-        Public,
-        Private
-    }
+    Public,
+    Private
 }

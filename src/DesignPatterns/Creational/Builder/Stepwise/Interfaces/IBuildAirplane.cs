@@ -1,7 +1,6 @@
-﻿namespace DesignPatterns.Creational.Builder.Stepwise.Interfaces
+﻿namespace DesignPatterns.Creational.Builder.Stepwise.Interfaces;
+
+public interface IBuildAirplane
 {
-    public interface IBuildAirplane
-    {
-        public Airplane Build();
-    }
+    public Airplane Build();
 }
