@@ -2,7 +2,7 @@
 
 namespace DesignPatterns.Creational.Prototype.Bad;
 
-public class ContactInfo : ICloneable
+public class ContactInfo
 {
     public string PhoneNumber;
     public string Address;
@@ -14,6 +14,4 @@ public class ContactInfo : ICloneable
     }
 
     public override string ToString() => $"\tPhone number: {PhoneNumber}\n\tAddress: {Address}";
-
-    public object Clone() => new ContactInfo(PhoneNumber, Address);
 }

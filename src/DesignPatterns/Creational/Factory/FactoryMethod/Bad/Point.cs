@@ -26,8 +26,8 @@ public class Point
     /// <summary>
     /// Initializes a point (cartesian or polar)
     /// </summary>
-    /// <param name="x">X if cartesian, rho if polar</param>
-    /// <param name="y">Y if cartesian, theta if polar</param>
+    /// <param name="a">X if cartesian, rho if polar</param>
+    /// <param name="b">Y if cartesian, theta if polar</param>
     /// <param name="system">Coordinate system</param>
     public Point(double a, double b, CoordinateSystem system = CoordinateSystem.Cartesian)
     {

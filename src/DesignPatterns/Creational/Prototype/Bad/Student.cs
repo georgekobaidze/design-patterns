@@ -18,5 +18,5 @@ public class Student : ICloneable
     public override string ToString() 
         => $"Full name: {FullName}\n\nContact information:\n{ContactInfo}\n\nSubjects:\n{string.Join(",", Subjects)}\n\n{new string('=', 50)}\n\n";
 
-    public object Clone() => new Student(FullName, Subjects, (ContactInfo)ContactInfo.Clone());
+    public object Clone() => new Student(FullName, Subjects, ContactInfo);
 }
