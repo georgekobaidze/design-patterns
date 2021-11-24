@@ -16,8 +16,8 @@ public class Point
 
     //public Point(double rho, double theta)
     //{
-    //    _x = rho;
-    //    _y = theta;
+    //    _x = rho * Math.Cos(theta);
+    //    _y = rho * Math.Sin(theta);
     //}
 
     // So instead we should do something like below (and again BAD PRACTICE ALERT!):
