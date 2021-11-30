@@ -28,7 +28,9 @@ using GoodOpenClosed = DesignPatterns.Solid.OpenClosed.Filters.Good;
 using GoodPrototypeCopyConstructors = DesignPatterns.Creational.Prototype.Good.CopyConstructors;
 using GoodPrototypeExplicitDeepCopyInterface = DesignPatterns.Creational.Prototype.Good.ExplicitDeepCopyInterface;
 using GoodPrototypeSerializer = DesignPatterns.Creational.Prototype.Good.Serialization;
+using DesignPatterns.Structural.Adapter;
 
+#region SOLID
 #region Single Responsibility
 
 var shoppingCart = new ShoppingCart();
@@ -99,6 +101,10 @@ Console.WriteLine(square);
 
 //To fix this, we can make rectangle properties virtual and override them in a square class.
 #endregion
+
+#endregion
+
+#region Creational
 
 #region Builder
 
@@ -301,4 +307,18 @@ for (int i = 0; i < 10; i++)
     var server4 = balancer4.NextServer.Name;
     Console.WriteLine($"Dispatch request to: {server4}");
 }
+#endregion
+
+#endregion
+
+#region Structural
+
+#region Adapter
+
+IEmployeeService employeeService = new ObjectEmployeeAdapter(new RecordServer());
+var employee = employeeService.GetEmployee(2);
+Console.WriteLine(employee);
+
+#endregion
+
 #endregion
