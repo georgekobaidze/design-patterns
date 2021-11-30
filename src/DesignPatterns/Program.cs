@@ -314,10 +314,15 @@ for (int i = 0; i < 10; i++)
 #region Structural
 
 #region Adapter
+// First with object adapter pattern
+IEmployeeService employeeService1 = new ObjectEmployeeAdapter(new RecordServer());
+var employee1 = employeeService1.GetEmployee(2);
+Console.WriteLine(employee1);
 
-IEmployeeService employeeService = new ObjectEmployeeAdapter(new RecordServer());
-var employee = employeeService.GetEmployee(2);
-Console.WriteLine(employee);
+//Now with class adapter pattern
+IEmployeeService employeeService2 = new ClassEmployeeAdapter();
+var employee2 = employeeService2.GetEmployee(3);
+Console.WriteLine(employee2);
 
 #endregion
 
