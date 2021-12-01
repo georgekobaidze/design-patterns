@@ -29,6 +29,8 @@ using GoodPrototypeCopyConstructors = DesignPatterns.Creational.Prototype.Good.C
 using GoodPrototypeExplicitDeepCopyInterface = DesignPatterns.Creational.Prototype.Good.ExplicitDeepCopyInterface;
 using GoodPrototypeSerializer = DesignPatterns.Creational.Prototype.Good.Serialization;
 using DesignPatterns.Structural.Adapter;
+using QRCoder;
+using DesignPatterns.Structural.Facade;
 
 #region SOLID
 #region Single Responsibility
@@ -324,6 +326,15 @@ IEmployeeService employeeService2 = new ClassEmployeeAdapter();
 var employee2 = employeeService2.GetEmployee(3);
 Console.WriteLine(employee2);
 
+#endregion
+
+#region Facade
+QRCodeGenerator qrGenerator = new QRCodeGenerator();
+QRCodeData qrCodeData = qrGenerator.CreateQrCode("Casino Engine Team", QRCodeGenerator.ECCLevel.Q);
+QRCode qrCode = new QRCode(qrCodeData);
+System.Drawing.Bitmap qrCodeImage = qrCode.GetGraphic(702);
+
+ConsoleDraw.ConsoleWriteImage(qrCodeImage);
 #endregion
 
 #endregion
