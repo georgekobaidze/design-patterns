@@ -31,6 +31,7 @@ using GoodPrototypeSerializer = DesignPatterns.Creational.Prototype.Good.Seriali
 using DesignPatterns.Structural.Adapter;
 using QRCoder;
 using DesignPatterns.Structural.Facade;
+using DesignPatterns.Structural.Proxy;
 
 #region SOLID
 #region Single Responsibility
@@ -335,6 +336,15 @@ QRCode qrCode = new QRCode(qrCodeData);
 System.Drawing.Bitmap qrCodeImage = qrCode.GetGraphic(702);
 
 ConsoleDraw.ConsoleWriteImage(qrCodeImage);
+#endregion
+
+#region Proxy
+WebParser parser = new WebParser("https://github.com/");
+Console.WriteLine(parser.GetSectionsCount());
+
+LazyWebParserProxy lazyWebParser = new LazyWebParserProxy("https://github.com/");
+Console.WriteLine(lazyWebParser.GetSectionsCount());
+Console.WriteLine(lazyWebParser.GetPagesCount());
 #endregion
 
 #endregion
