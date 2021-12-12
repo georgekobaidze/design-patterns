@@ -32,6 +32,7 @@ using DesignPatterns.Structural.Adapter;
 using QRCoder;
 using DesignPatterns.Structural.Facade;
 using DesignPatterns.Structural.Proxy;
+using DesignPatterns.Structural.Decorator.Scenario1.Good.Classes;
 
 #region SOLID
 #region Single Responsibility
@@ -347,4 +348,7 @@ Console.WriteLine(lazyWebParser.GetSectionsCount());
 Console.WriteLine(lazyWebParser.GetPagesCount());
 #endregion
 
+#endregion
+
+#region Decorator
 #endregion
