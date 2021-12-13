@@ -350,8 +350,6 @@ Console.WriteLine(lazyWebParser.GetSectionsCount());
 Console.WriteLine(lazyWebParser.GetPagesCount());
 #endregion
 
-#endregion
-
 #region Decorator
 
 // First let's create a basic types of chocolate
@@ -382,5 +380,7 @@ Console.WriteLine();
 
 var brownWithCherry = new CherryAddon(basicBrown);
 Console.WriteLine(brownWithCherry.GetInfo());
+
+#endregion
 
 #endregion
