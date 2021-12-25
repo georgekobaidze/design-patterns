@@ -35,6 +35,8 @@ using DesignPatterns.Structural.Proxy;
 using DesignPatterns.Structural.Decorator.Scenario1.Good.Classes;
 using DesignPatterns.Structural.Decorator.Scenario2.ConcreteComponents;
 using DesignPatterns.Structural.Decorator.Scenario2.ConcreteDecorators;
+using DesignPatterns.Structural.Bridge.ConcreteImplementations;
+using DesignPatterns.Structural.Bridge.ExtendedAbstractions;
 
 #region SOLID
 #region Single Responsibility
@@ -381,6 +383,14 @@ Console.WriteLine();
 var brownWithCherry = new CherryAddon(basicBrown);
 Console.WriteLine(brownWithCherry.GetInfo());
 
+#endregion
+
+#region Bridge
+var remote = new NormalRemoteControl(new Tv());
+remote.IncreaseVolume();
+
+var advancedRemote = new AdvancedRemoteControl(new MusicPlayer());
+advancedRemote.Mute();
 #endregion
 
 #endregion
