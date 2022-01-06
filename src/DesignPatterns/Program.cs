@@ -28,7 +28,17 @@ using GoodOpenClosed = DesignPatterns.Solid.OpenClosed.Filters.Good;
 using GoodPrototypeCopyConstructors = DesignPatterns.Creational.Prototype.Good.CopyConstructors;
 using GoodPrototypeExplicitDeepCopyInterface = DesignPatterns.Creational.Prototype.Good.ExplicitDeepCopyInterface;
 using GoodPrototypeSerializer = DesignPatterns.Creational.Prototype.Good.Serialization;
+using DesignPatterns.Structural.Adapter;
+using QRCoder;
+using DesignPatterns.Structural.Facade;
+using DesignPatterns.Structural.Proxy;
+using DesignPatterns.Structural.Decorator.Scenario1.Good.Classes;
+using DesignPatterns.Structural.Decorator.Scenario2.ConcreteComponents;
+using DesignPatterns.Structural.Decorator.Scenario2.ConcreteDecorators;
+using DesignPatterns.Structural.Bridge.ConcreteImplementations;
+using DesignPatterns.Structural.Bridge.ExtendedAbstractions;
 
+#region SOLID
 #region Single Responsibility
 
 var shoppingCart = new ShoppingCart();
@@ -99,6 +109,10 @@ Console.WriteLine(square);
 
 //To fix this, we can make rectangle properties virtual and override them in a square class.
 #endregion
+
+#endregion
+
+#region Creational
 
 #region Builder
 
@@ -301,4 +315,82 @@ for (int i = 0; i < 10; i++)
     var server4 = balancer4.NextServer.Name;
     Console.WriteLine($"Dispatch request to: {server4}");
 }
+#endregion
+
+#endregion
+
+#region Structural
+
+#region Adapter
+// First with object adapter pattern
+IEmployeeService employeeService1 = new ObjectEmployeeAdapter(new RecordServer());
+var employee1 = employeeService1.GetEmployee(2);
+Console.WriteLine(employee1);
+
+//Now with class adapter pattern
+IEmployeeService employeeService2 = new ClassEmployeeAdapter();
+var employee2 = employeeService2.GetEmployee(3);
+Console.WriteLine(employee2);
+
+#endregion
+
+#region Facade
+QRCodeGenerator qrGenerator = new QRCodeGenerator();
+QRCodeData qrCodeData = qrGenerator.CreateQrCode("Casino Engine Team", QRCodeGenerator.ECCLevel.Q);
+QRCode qrCode = new QRCode(qrCodeData);
+System.Drawing.Bitmap qrCodeImage = qrCode.GetGraphic(702);
+
+ConsoleDraw.ConsoleWriteImage(qrCodeImage);
+#endregion
+
+#region Proxy
+WebParser parser = new WebParser("https://github.com/");
+Console.WriteLine(parser.GetSectionsCount());
+
+LazyWebParserProxy lazyWebParser = new LazyWebParserProxy("https://github.com/");
+Console.WriteLine(lazyWebParser.GetSectionsCount());
+Console.WriteLine(lazyWebParser.GetPagesCount());
+#endregion
+
+#region Decorator
+
+// First let's create a basic types of chocolate
+
+var basicBrown = new BrownChocolate();
+Console.WriteLine(basicBrown.GetInfo());
+
+Console.WriteLine();
+
+var basicBlack = new BlackChocolate();
+Console.WriteLine(basicBlack.GetInfo());
+
+Console.WriteLine();
+
+// Now let's create decorated chocolate objects
+
+// Black with nut:
+
+var blackWithNut = new NutAddon(basicBlack);
+Console.WriteLine(blackWithNut.GetInfo());
+
+Console.WriteLine();
+
+var brownWithMilk = new MilkAddon(basicBrown);
+Console.WriteLine(brownWithMilk.GetInfo());
+
+Console.WriteLine();
+
+var brownWithCherry = new CherryAddon(basicBrown);
+Console.WriteLine(brownWithCherry.GetInfo());
+
+#endregion
+
+#region Bridge
+var remote = new NormalRemoteControl(new Tv());
+remote.IncreaseVolume();
+
+var advancedRemote = new AdvancedRemoteControl(new MusicPlayer());
+advancedRemote.Mute();
+#endregion
+
 #endregion
