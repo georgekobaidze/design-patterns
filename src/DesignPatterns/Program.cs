@@ -32,13 +32,13 @@ using DesignPatterns.Structural.Adapter;
 using QRCoder;
 using DesignPatterns.Structural.Facade;
 using DesignPatterns.Structural.Proxy;
-using DesignPatterns.Structural.Decorator.Scenario1.Good.Classes;
 using DesignPatterns.Structural.Decorator.Scenario2.ConcreteComponents;
 using DesignPatterns.Structural.Decorator.Scenario2.ConcreteDecorators;
 using DesignPatterns.Structural.Bridge.ConcreteImplementations;
 using DesignPatterns.Structural.Bridge.ExtendedAbstractions;
 using DesignPatterns.Structural.Composite.Leaf;
 using DesignPatterns.Structural.Composite.Composite;
+using System.Text;
 
 #region SOLID
 #region Single Responsibility
@@ -415,6 +415,17 @@ fedexBox.AddGift(vendorBox);
 var totalCost = fedexBox.CalculateTotalCost();
 Console.WriteLine($"Total cost: {totalCost}");
 
+#endregion
+
+#region Flyweight
+// One real-life example of flyweight is string interning in C#
+var s1 = "Giorgi Kobaidze";
+var s2 = new StringBuilder().Append("Giorgi").Append(" Kobaidze").ToString();
+var s3 = string.Intern(s2); // Instances of s3 and s1 will be the same, because s1 exists as a literal
+
+Console.WriteLine($"s1 == s2: {(object)s1 == (object)s2}");
+Console.WriteLine($"s2 == s3: {(object)s2 == (object)s3}");
+Console.WriteLine($"s1 == s3: {(object)s1 == (object)s3}");
 #endregion
 
 #endregion
