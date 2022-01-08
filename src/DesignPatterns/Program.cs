@@ -37,6 +37,8 @@ using DesignPatterns.Structural.Decorator.Scenario2.ConcreteComponents;
 using DesignPatterns.Structural.Decorator.Scenario2.ConcreteDecorators;
 using DesignPatterns.Structural.Bridge.ConcreteImplementations;
 using DesignPatterns.Structural.Bridge.ExtendedAbstractions;
+using DesignPatterns.Structural.Composite.Leaf;
+using DesignPatterns.Structural.Composite.Composite;
 
 #region SOLID
 #region Single Responsibility
@@ -391,6 +393,28 @@ remote.IncreaseVolume();
 
 var advancedRemote = new AdvancedRemoteControl(new MusicPlayer());
 advancedRemote.Mute();
+#endregion
+
+#region Composite
+// First let's create a singular gift:
+var bike = new SingularGift("Mountain bike", 3500);
+bike.CalculateTotalCost();
+
+// Now let's construct a composite gift:
+var fedexBox = new CompositeGift("Fedex box", 2);
+var vendorBox = new CompositeGift("Apple box", 10);
+var laptop = new SingularGift("Macbook Pro", 4000);
+var chargerBox = new CompositeGift("Charger box", 5);
+var charger = new SingularGift("Charger", 70);
+
+chargerBox.AddGift(charger);
+vendorBox.AddGift(laptop);
+vendorBox.AddGift(chargerBox);
+fedexBox.AddGift(vendorBox);
+
+var totalCost = fedexBox.CalculateTotalCost();
+Console.WriteLine($"Total cost: {totalCost}");
+
 #endregion
 
 #endregion
