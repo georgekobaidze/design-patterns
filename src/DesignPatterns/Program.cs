@@ -32,11 +32,14 @@ using DesignPatterns.Structural.Adapter;
 using QRCoder;
 using DesignPatterns.Structural.Facade;
 using DesignPatterns.Structural.Proxy;
-using DesignPatterns.Structural.Decorator.Scenario1.Good.Classes;
 using DesignPatterns.Structural.Decorator.Scenario2.ConcreteComponents;
 using DesignPatterns.Structural.Decorator.Scenario2.ConcreteDecorators;
 using DesignPatterns.Structural.Bridge.ConcreteImplementations;
 using DesignPatterns.Structural.Bridge.ExtendedAbstractions;
+using DesignPatterns.Structural.Composite.Leaf;
+using DesignPatterns.Structural.Composite.Composite;
+using System.Text;
+using DesignPatterns.Structural.Flyweight;
 
 #region SOLID
 #region Single Responsibility
@@ -391,6 +394,54 @@ remote.IncreaseVolume();
 
 var advancedRemote = new AdvancedRemoteControl(new MusicPlayer());
 advancedRemote.Mute();
+#endregion
+
+#region Composite
+// First let's create a singular gift:
+var bike = new SingularGift("Mountain bike", 3500);
+bike.CalculateTotalCost();
+
+// Now let's construct a composite gift:
+var fedexBox = new CompositeGift("Fedex box", 2);
+var vendorBox = new CompositeGift("Apple box", 10);
+var laptop = new SingularGift("Macbook Pro", 4000);
+var chargerBox = new CompositeGift("Charger box", 5);
+var charger = new SingularGift("Charger", 70);
+
+chargerBox.AddGift(charger);
+vendorBox.AddGift(laptop);
+vendorBox.AddGift(chargerBox);
+fedexBox.AddGift(vendorBox);
+
+var totalCost = fedexBox.CalculateTotalCost();
+Console.WriteLine($"Total cost: {totalCost}");
+
+#endregion
+
+#region Flyweight
+// One real-life example of flyweight is string interning in C#
+var s1 = "Giorgi Kobaidze";
+var s2 = new StringBuilder().Append("Giorgi").Append(" Kobaidze").ToString();
+var s3 = string.Intern(s2); // Instances of s3 and s1 will be the same, because s1 exists as a literal
+
+Console.WriteLine($"s1 == s2: {(object)s1 == (object)s2}");
+Console.WriteLine($"s2 == s3: {(object)s2 == (object)s3}");
+Console.WriteLine($"s1 == s3: {(object)s1 == (object)s3}");
+
+
+// Now a small conceptual example:
+var factory = new FlyweightFactory(
+    new Soldier("Human", "Swordsman"),
+    new Soldier("Elf", "Archer"),
+    new Soldier("Orc", "Brute"),
+    new Soldier("Human", "Cavalry"));
+
+factory.ListAllFlyweights();
+
+factory.AddNewObject(new Soldier("Elf", "Swordsman", 12, 15));
+factory.AddNewObject(new Soldier("Human", "Swordsman", 10, 12));
+
+factory.ListAllFlyweights();
 #endregion
 
 #endregion
