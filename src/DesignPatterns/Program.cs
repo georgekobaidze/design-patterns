@@ -39,6 +39,7 @@ using DesignPatterns.Structural.Bridge.ExtendedAbstractions;
 using DesignPatterns.Structural.Composite.Leaf;
 using DesignPatterns.Structural.Composite.Composite;
 using System.Text;
+using DesignPatterns.Structural.Flyweight;
 
 #region SOLID
 #region Single Responsibility
@@ -426,6 +427,21 @@ var s3 = string.Intern(s2); // Instances of s3 and s1 will be the same, because 
 Console.WriteLine($"s1 == s2: {(object)s1 == (object)s2}");
 Console.WriteLine($"s2 == s3: {(object)s2 == (object)s3}");
 Console.WriteLine($"s1 == s3: {(object)s1 == (object)s3}");
+
+
+// Now a small conceptual example:
+var factory = new FlyweightFactory(
+    new Soldier("Human", "Swordsman"),
+    new Soldier("Elf", "Archer"),
+    new Soldier("Orc", "Brute"),
+    new Soldier("Human", "Cavalry"));
+
+factory.ListAllFlyweights();
+
+factory.AddNewObject(new Soldier("Elf", "Swordsman", 12, 15));
+factory.AddNewObject(new Soldier("Human", "Swordsman", 10, 12));
+
+factory.ListAllFlyweights();
 #endregion
 
 #endregion
