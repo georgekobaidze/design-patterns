@@ -41,7 +41,12 @@ using DesignPatterns.Structural.Composite.Composite;
 using System.Text;
 using DesignPatterns.Behavioral.ChainOfResponsibility;
 using DesignPatterns.Behavioral.ChainOfResponsibility.ConcreteApprovers;
+using DesignPatterns.Behavioral.Command.Models;
+using DesignPatterns.Behavioral.Command.WithCommandPattern;
+using DesignPatterns.Behavioral.Command.WithCommandPattern.ConcreteCommands;
+using DesignPatterns.Behavioral.Command.WithoutCommandPattern;
 using DesignPatterns.Structural.Flyweight;
+using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.RemoteControl;
 
 // #region SOLID
 // #region Single Responsibility
@@ -450,17 +455,60 @@ using DesignPatterns.Structural.Flyweight;
 
 #region Behavioral
 
-#region ChainOfResponsibility
+// #region ChainOfResponsibility
+//
+// IApprover casinoAutomation = new CasinoAutomation();
+// IApprover casinoOperator = new CasinoOperator();
+// IApprover casinoManager = new CasinoManager();
+//
+// casinoAutomation.NextApprover = casinoOperator;
+// casinoOperator.NextApprover = casinoManager;
+//
+// var transactionRequest = new TransactionRequest { Amount = 70000 };
+// casinoAutomation.ProcessRequest(transactionRequest);
+//
+// #endregion
 
-IApprover casinoAutomation = new CasinoAutomation();
-IApprover casinoOperator = new CasinoOperator();
-IApprover casinoManager = new CasinoManager();
+#region Command
 
-casinoAutomation.NextApprover = casinoOperator;
-casinoOperator.NextApprover = casinoManager;
+// #region WithoutCommand
+//
+// var tv = new Television();
+// var stereo = new StereoSystem();
+// var light = new Light();
+//
+// var remoteControl = new RemoteControl(tv, stereo, light);
+// remoteControl.PressTelevisionButton();
+// remoteControl.PressStereoButton();
+// remoteControl.PressLightButton();
+//
+// #endregion
 
-var transactionRequest = new TransactionRequest { Amount = 70000 };
-casinoAutomation.ProcessRequest(transactionRequest);
+#region WithCommand
+
+var tv = new Television();
+var stereo = new StereoSystem();
+var light = new Light();
+
+var turnOnTvCommand = new TurnOnTelevisionCommand(tv);
+var increaseVolumeCommand = new IncreaseVolumeCommand(stereo);
+var toggleLightCommand = new ToggleLightCommand(light);
+
+var remoteControl = new RemoteControl();
+
+// Pressing television button
+remoteControl.SetUpCommand(turnOnTvCommand);
+remoteControl.PressButton();
+
+// Pressing stereo button
+remoteControl.SetUpCommand(increaseVolumeCommand);
+remoteControl.PressButton();
+
+// Pressing light button
+remoteControl.SetUpCommand(toggleLightCommand);
+remoteControl.PressButton();
+
+#endregion
 
 #endregion
 
