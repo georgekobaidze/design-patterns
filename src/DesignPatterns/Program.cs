@@ -39,12 +39,15 @@ using DesignPatterns.Structural.Bridge.ExtendedAbstractions;
 using DesignPatterns.Structural.Composite.Leaf;
 using DesignPatterns.Structural.Composite.Composite;
 using System.Text;
+using System.Threading.Channels;
 using DesignPatterns.Behavioral.ChainOfResponsibility;
 using DesignPatterns.Behavioral.ChainOfResponsibility.ConcreteApprovers;
 using DesignPatterns.Behavioral.Command.Models;
 using DesignPatterns.Behavioral.Command.WithCommandPattern;
 using DesignPatterns.Behavioral.Command.WithCommandPattern.ConcreteCommands;
 using DesignPatterns.Behavioral.Command.WithoutCommandPattern;
+using DesignPatterns.Behavioral.Interpreter;
+using DesignPatterns.Behavioral.Interpreter.ConcreteExpressions;
 using DesignPatterns.Behavioral.Iterator;
 using DesignPatterns.Structural.Flyweight;
 using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.RemoteControl;
@@ -513,21 +516,40 @@ using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.Remot
 //
 // #endregion
 
-#region Iterator
+// #region Iterator
+//
+// SocialMediaFeed feed = new SocialMediaFeed();
+// feed.AddPost(new Post("Post 1", "Content of Post 1"));
+// feed.AddPost(new Post("Post 2", "Content of Post 2"));
+// feed.AddPost(new Post("Post 3", "Content of Post 3"));
+//
+// IIterator iterator = feed.CreateIterator();
+//
+// Console.WriteLine("Iterating over the social media feed:");
+// while (iterator.HasNext())
+// {
+//     Post post = iterator.Next();
+//     Console.WriteLine($"Title: {post.Title}, Content: {post.Content}");
+// }
+//
+// #endregion
 
-SocialMediaFeed feed = new SocialMediaFeed();
-feed.AddPost(new Post("Post 1", "Content of Post 1"));
-feed.AddPost(new Post("Post 2", "Content of Post 2"));
-feed.AddPost(new Post("Post 3", "Content of Post 3"));
+#region Interpreter
 
-IIterator iterator = feed.CreateIterator();
+var context = new Context();
+context.Variables["a"] = 18;
+context.Variables["b"] = 12;
 
-Console.WriteLine("Iterating over the social media feed:");
-while (iterator.HasNext())
-{
-    Post post = iterator.Next();
-    Console.WriteLine($"Title: {post.Title}, Content: {post.Content}");
-}
+context.Variables["c"] = 3;
+context.Variables["d"] = 8;
+
+IExpression additionExpression = new AdditionExpression(new VariableExpression("a"), new VariableExpression("b"));
+IExpression divisionExpression = new DivisionExpression(additionExpression, new VariableExpression("c"));
+IExpression multiplicationExpression = new MultiplicationExpression(divisionExpression, new VariableExpression("d"));
+
+var result = multiplicationExpression.Interpret(context);
+
+Console.WriteLine(result);
 
 #endregion
 
