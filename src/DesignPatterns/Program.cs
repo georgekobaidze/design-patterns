@@ -45,6 +45,7 @@ using DesignPatterns.Behavioral.Command.Models;
 using DesignPatterns.Behavioral.Command.WithCommandPattern;
 using DesignPatterns.Behavioral.Command.WithCommandPattern.ConcreteCommands;
 using DesignPatterns.Behavioral.Command.WithoutCommandPattern;
+using DesignPatterns.Behavioral.Iterator;
 using DesignPatterns.Structural.Flyweight;
 using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.RemoteControl;
 
@@ -469,46 +470,64 @@ using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.Remot
 //
 // #endregion
 
-#region Command
-
-// #region WithoutCommand
+// #region Command
 //
-// var tv = new Television();
-// var stereo = new StereoSystem();
-// var light = new Light();
+// // #region WithoutCommand
+// //
+// // var tv = new Television();
+// // var stereo = new StereoSystem();
+// // var light = new Light();
+// //
+// // var remoteControl = new RemoteControl(tv, stereo, light);
+// // remoteControl.PressTelevisionButton();
+// // remoteControl.PressStereoButton();
+// // remoteControl.PressLightButton();
+// //
+// // #endregion
 //
-// var remoteControl = new RemoteControl(tv, stereo, light);
-// remoteControl.PressTelevisionButton();
-// remoteControl.PressStereoButton();
-// remoteControl.PressLightButton();
+// // #region WithCommand
+// //
+// // var tv = new Television();
+// // var stereo = new StereoSystem();
+// // var light = new Light();
+// //
+// // var turnOnTvCommand = new TurnOnTelevisionCommand(tv);
+// // var increaseVolumeCommand = new IncreaseVolumeCommand(stereo);
+// // var toggleLightCommand = new ToggleLightCommand(light);
+// //
+// // var remoteControl = new RemoteControl();
+// //
+// // // Pressing television button
+// // remoteControl.SetUpCommand(turnOnTvCommand);
+// // remoteControl.PressButton();
+// //
+// // // Pressing stereo button
+// // remoteControl.SetUpCommand(increaseVolumeCommand);
+// // remoteControl.PressButton();
+// //
+// // // Pressing light button
+// // remoteControl.SetUpCommand(toggleLightCommand);
+// // remoteControl.PressButton();
+// //
+// // #endregion
 //
 // #endregion
 
-#region WithCommand
+#region Iterator
 
-var tv = new Television();
-var stereo = new StereoSystem();
-var light = new Light();
+SocialMediaFeed feed = new SocialMediaFeed();
+feed.AddPost(new Post("Post 1", "Content of Post 1"));
+feed.AddPost(new Post("Post 2", "Content of Post 2"));
+feed.AddPost(new Post("Post 3", "Content of Post 3"));
 
-var turnOnTvCommand = new TurnOnTelevisionCommand(tv);
-var increaseVolumeCommand = new IncreaseVolumeCommand(stereo);
-var toggleLightCommand = new ToggleLightCommand(light);
+IIterator iterator = feed.CreateIterator();
 
-var remoteControl = new RemoteControl();
-
-// Pressing television button
-remoteControl.SetUpCommand(turnOnTvCommand);
-remoteControl.PressButton();
-
-// Pressing stereo button
-remoteControl.SetUpCommand(increaseVolumeCommand);
-remoteControl.PressButton();
-
-// Pressing light button
-remoteControl.SetUpCommand(toggleLightCommand);
-remoteControl.PressButton();
-
-#endregion
+Console.WriteLine("Iterating over the social media feed:");
+while (iterator.HasNext())
+{
+    Post post = iterator.Next();
+    Console.WriteLine($"Title: {post.Title}, Content: {post.Content}");
+}
 
 #endregion
 
