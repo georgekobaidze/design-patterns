@@ -42,13 +42,14 @@ using System.Text;
 using System.Threading.Channels;
 using DesignPatterns.Behavioral.ChainOfResponsibility;
 using DesignPatterns.Behavioral.ChainOfResponsibility.ConcreteApprovers;
-using DesignPatterns.Behavioral.Command.Models;
 using DesignPatterns.Behavioral.Command.WithCommandPattern;
 using DesignPatterns.Behavioral.Command.WithCommandPattern.ConcreteCommands;
 using DesignPatterns.Behavioral.Command.WithoutCommandPattern;
 using DesignPatterns.Behavioral.Interpreter;
 using DesignPatterns.Behavioral.Interpreter.ConcreteExpressions;
 using DesignPatterns.Behavioral.Iterator;
+using DesignPatterns.Behavioral.Mediator;
+using DesignPatterns.Behavioral.Mediator.ConcreteDevices;
 using DesignPatterns.Structural.Flyweight;
 using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.RemoteControl;
 
@@ -534,22 +535,38 @@ using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.Remot
 //
 // #endregion
 
-#region Interpreter
+// #region Interpreter
+//
+// var context = new Context();
+// context.Variables["a"] = 18;
+// context.Variables["b"] = 12;
+//
+// context.Variables["c"] = 3;
+// context.Variables["d"] = 8;
+//
+// IExpression additionExpression = new AdditionExpression(new VariableExpression("a"), new VariableExpression("b"));
+// IExpression divisionExpression = new DivisionExpression(additionExpression, new VariableExpression("c"));
+// IExpression multiplicationExpression = new MultiplicationExpression(divisionExpression, new VariableExpression("d"));
+//
+// var result = multiplicationExpression.Interpret(context);
+//
+// Console.WriteLine(result);
+//
+// #endregion
 
-var context = new Context();
-context.Variables["a"] = 18;
-context.Variables["b"] = 12;
+#region Mediator
 
-context.Variables["c"] = 3;
-context.Variables["d"] = 8;
+ISmartHomeMediator smartHomeMediator = new SmartHomeMediator();
 
-IExpression additionExpression = new AdditionExpression(new VariableExpression("a"), new VariableExpression("b"));
-IExpression divisionExpression = new DivisionExpression(additionExpression, new VariableExpression("c"));
-IExpression multiplicationExpression = new MultiplicationExpression(divisionExpression, new VariableExpression("d"));
+SmartDevice light = new Light(smartHomeMediator, "RGB Lights");
+SmartDevice thermostat = new Thermostat(smartHomeMediator, "Living Room Thermostat");
+SmartDevice fridge = new Refrigerator(smartHomeMediator, "Garage Fridge");
 
-var result = multiplicationExpression.Interpret(context);
+smartHomeMediator.AddDevices(light, thermostat, fridge);
 
-Console.WriteLine(result);
+light.BroadcastMessage("Turning the lights on.");
+thermostat.BroadcastMessage("Setting temperature to 82 degrees Fahrenheit.");
+fridge.BroadcastMessage("We're out of beers, partner! Get some more.");
 
 #endregion
 
