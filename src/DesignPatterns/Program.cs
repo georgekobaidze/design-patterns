@@ -50,6 +50,7 @@ using DesignPatterns.Behavioral.Interpreter.ConcreteExpressions;
 using DesignPatterns.Behavioral.Iterator;
 using DesignPatterns.Behavioral.Mediator;
 using DesignPatterns.Behavioral.Mediator.ConcreteDevices;
+using DesignPatterns.Behavioral.Memento;
 using DesignPatterns.Structural.Flyweight;
 using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.RemoteControl;
 
@@ -554,19 +555,39 @@ using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.Remot
 //
 // #endregion
 
-#region Mediator
+// #region Mediator
+//
+// ISmartHomeMediator smartHomeMediator = new SmartHomeMediator();
+//
+// SmartDevice light = new Light(smartHomeMediator, "RGB Lights");
+// SmartDevice thermostat = new Thermostat(smartHomeMediator, "Living Room Thermostat");
+// SmartDevice fridge = new Refrigerator(smartHomeMediator, "Garage Fridge");
+//
+// smartHomeMediator.AddDevices(light, thermostat, fridge);
+//
+// light.BroadcastMessage("Turning the lights on.");
+// thermostat.BroadcastMessage("Setting temperature to 82 degrees Fahrenheit.");
+// fridge.BroadcastMessage("We're out of beers, partner! Get some more.");
+//
+// #endregion
 
-ISmartHomeMediator smartHomeMediator = new SmartHomeMediator();
+#region Memento
 
-SmartDevice light = new Light(smartHomeMediator, "RGB Lights");
-SmartDevice thermostat = new Thermostat(smartHomeMediator, "Living Room Thermostat");
-SmartDevice fridge = new Refrigerator(smartHomeMediator, "Garage Fridge");
+var editor = new TextEditor();
+var commandHistory = new CommandHistory();
 
-smartHomeMediator.AddDevices(light, thermostat, fridge);
+editor.Text = "Take Me Home, Country Roads";
+commandHistory.Push(editor.Save());
 
-light.BroadcastMessage("Turning the lights on.");
-thermostat.BroadcastMessage("Setting temperature to 82 degrees Fahrenheit.");
-fridge.BroadcastMessage("We're out of beers, partner! Get some more.");
+editor.Text = "The Ballad Of Curtis Loew";
+commandHistory.Push(editor.Save());
+
+editor.Text = "The Ecstasy Of Gold";
+commandHistory.Push(editor.Save());
+
+editor.Restore(commandHistory.Pop());
+editor.Restore(commandHistory.Pop());
+editor.Restore(commandHistory.Pop());
 
 #endregion
 
