@@ -52,6 +52,8 @@ using DesignPatterns.Behavioral.Mediator;
 using DesignPatterns.Behavioral.Mediator.ConcreteDevices;
 using DesignPatterns.Behavioral.Memento;
 using DesignPatterns.Behavioral.Observer;
+using DesignPatterns.Behavioral.State;
+using DesignPatterns.Behavioral.State.ConcreteStates;
 using DesignPatterns.Structural.Flyweight;
 using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.RemoteControl;
 
@@ -592,24 +594,41 @@ using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.Remot
 //
 // #endregion
 
-#region Observer
+// #region Observer
+//
+// var weatherStation = new WeatherStation();
+//
+// var displayDevice1 = new DisplayDevice("Mobile Phone");
+// var displayDevice2 = new DisplayDevice("Tablet");
+//
+// weatherStation.AttachDisplayDevice(displayDevice1);
+// weatherStation.AttachDisplayDevice(displayDevice2);
+//
+// weatherStation.Temperature = 50;
+// weatherStation.Humidity = 70;
+//
+// Console.WriteLine("Unsubscribing the tablet");
+//
+// weatherStation.DetachDisplayDevice(displayDevice2);
+//
+// weatherStation.Temperature = 74;
+//
+// #endregion
 
-var weatherStation = new WeatherStation();
+#region State
 
-var displayDevice1 = new DisplayDevice("Mobile Phone");
-var displayDevice2 = new DisplayDevice("Tablet");
+var button = new SmartphoneButton();
 
-weatherStation.AttachDisplayDevice(displayDevice1);
-weatherStation.AttachDisplayDevice(displayDevice2);
+button.Press(); // Turning on
+button.State = new EnabledState();
 
-weatherStation.Temperature = 50;
-weatherStation.Humidity = 70;
+button.State = new PhotoState(true);
+button.Press();
 
-Console.WriteLine("Unsubscribing the tablet");
+button.State = new EnabledState();
 
-weatherStation.DetachDisplayDevice(displayDevice2);
-
-weatherStation.Temperature = 74;
+button.Press();
+button.State = new DisabledState();
 
 #endregion
 
