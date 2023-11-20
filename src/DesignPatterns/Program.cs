@@ -579,13 +579,13 @@ using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.Remot
 // var editor = new TextEditor();
 // var commandHistory = new CommandHistory();
 //
-// editor.Text = "Take Me Home, Country Roads";
+// editor.Text = "TEDDY 555 0134";
 // commandHistory.Push(editor.Save());
 //
-// editor.Text = "The Ballad Of Curtis Loew";
+// editor.Text = "Don't believe his lies. He's the one kill him.";
 // commandHistory.Push(editor.Save());
 //
-// editor.Text = "The Ecstasy Of Gold";
+// editor.Text = "White guy, 6'2'', blonde MonteRest Inn on 5th St. Put him onto Teddy or just get rid of him for Natalie.";
 // commandHistory.Push(editor.Save());
 //
 // editor.Restore(commandHistory.Pop());
