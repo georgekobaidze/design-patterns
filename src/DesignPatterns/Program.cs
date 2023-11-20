@@ -51,6 +51,7 @@ using DesignPatterns.Behavioral.Iterator;
 using DesignPatterns.Behavioral.Mediator;
 using DesignPatterns.Behavioral.Mediator.ConcreteDevices;
 using DesignPatterns.Behavioral.Memento;
+using DesignPatterns.Behavioral.Observer;
 using DesignPatterns.Structural.Flyweight;
 using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.RemoteControl;
 
@@ -571,23 +572,44 @@ using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.Remot
 //
 // #endregion
 
-#region Memento
+// #region Memento
+//
+// var editor = new TextEditor();
+// var commandHistory = new CommandHistory();
+//
+// editor.Text = "Take Me Home, Country Roads";
+// commandHistory.Push(editor.Save());
+//
+// editor.Text = "The Ballad Of Curtis Loew";
+// commandHistory.Push(editor.Save());
+//
+// editor.Text = "The Ecstasy Of Gold";
+// commandHistory.Push(editor.Save());
+//
+// editor.Restore(commandHistory.Pop());
+// editor.Restore(commandHistory.Pop());
+// editor.Restore(commandHistory.Pop());
+//
+// #endregion
 
-var editor = new TextEditor();
-var commandHistory = new CommandHistory();
+#region Observer
 
-editor.Text = "Take Me Home, Country Roads";
-commandHistory.Push(editor.Save());
+var weatherStation = new WeatherStation();
 
-editor.Text = "The Ballad Of Curtis Loew";
-commandHistory.Push(editor.Save());
+var displayDevice1 = new DisplayDevice("Mobile Phone");
+var displayDevice2 = new DisplayDevice("Tablet");
 
-editor.Text = "The Ecstasy Of Gold";
-commandHistory.Push(editor.Save());
+weatherStation.AttachDisplayDevice(displayDevice1);
+weatherStation.AttachDisplayDevice(displayDevice2);
 
-editor.Restore(commandHistory.Pop());
-editor.Restore(commandHistory.Pop());
-editor.Restore(commandHistory.Pop());
+weatherStation.Temperature = 50;
+weatherStation.Humidity = 70;
+
+Console.WriteLine("Unsubscribing the tablet");
+
+weatherStation.DetachDisplayDevice(displayDevice2);
+
+weatherStation.Temperature = 74;
 
 #endregion
 
