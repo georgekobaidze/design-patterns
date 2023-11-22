@@ -13,7 +13,7 @@ using DesignPatterns.Creational.Factory.FactoryMethod.Bad;
 using DesignPatterns.Creational.Factory.FactoryMethod.Good.FactoryMethodV2;
 using DesignPatterns.Creational.Prototype.Good.Serialization;
 using DesignPatterns.Creational.Singleton;
-using DesignPatterns.Solid.LiskovSubstitution;
+// using DesignPatterns.Solid.LiskovSubstitution;
 using DesignPatterns.Solid.OpenClosed;
 using DesignPatterns.Solid.OpenClosed.Enums;
 using DesignPatterns.Solid.OpenClosed.Filters.Good.Specifications;
@@ -57,6 +57,8 @@ using DesignPatterns.Behavioral.State.ConcreteStates;
 using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.Strategy.ConcreteStrategies;
 using DesignPatterns.Behavioral.TemplateMethod.ConcreteTemplates;
+using DesignPatterns.Behavioral.Visitor;
+using DesignPatterns.Behavioral.Visitor.ConcreteElements;
 using DesignPatterns.Structural.Flyweight;
 using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.RemoteControl;
 
@@ -660,15 +662,27 @@ using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.Remot
 //
 // #endregion
 
-#region Template Method
+// #region Template Method
+//
+// var textDocumentProcessor = new TextDocumentProcessor();
+// textDocumentProcessor.ProcessDocument();
+//
+// Console.WriteLine("----------------------------");
+//
+// var spreadsheetDocumentProcessor = new SpreadsheetDocumentProcessor();
+// spreadsheetDocumentProcessor.ProcessDocument();
+//
+// #endregion
 
-var textDocumentProcessor = new TextDocumentProcessor();
-textDocumentProcessor.ProcessDocument();
+#region Visitor
 
-Console.WriteLine("----------------------------");
+var shapes = new ShapeCollection();
+shapes.AddShape(new Circle(1));
+shapes.AddShape(new Rectangle(5, 4));
+shapes.AddShape(new Triangle(4));
 
-var spreadsheetDocumentProcessor = new SpreadsheetDocumentProcessor();
-spreadsheetDocumentProcessor.ProcessDocument();
+IShapeVisitor areaCalculator = new AreaCalculator();
+shapes.AcceptVisitor(areaCalculator);
 
 #endregion
 
