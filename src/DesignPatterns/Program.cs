@@ -18,7 +18,7 @@ using DesignPatterns.Solid.OpenClosed;
 using DesignPatterns.Solid.OpenClosed.Enums;
 using DesignPatterns.Solid.OpenClosed.Filters.Good.Specifications;
 using DesignPatterns.Solid.SingleResponsibility;
-using DesignPatterns.Solid.SingleResponsibility.Good;
+// using DesignPatterns.Solid.SingleResponsibility.Good;
 using BadFactoryMethod = DesignPatterns.Creational.Factory.FactoryMethod.Bad;
 using BadOpenClosed = DesignPatterns.Solid.OpenClosed.Filters.Bad;
 using BadPrototype = DesignPatterns.Creational.Prototype.Bad;
@@ -54,6 +54,8 @@ using DesignPatterns.Behavioral.Memento;
 using DesignPatterns.Behavioral.Observer;
 using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.State.ConcreteStates;
+using DesignPatterns.Behavioral.Strategy;
+using DesignPatterns.Behavioral.Strategy.ConcreteStrategies;
 using DesignPatterns.Structural.Flyweight;
 using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.RemoteControl;
 
@@ -615,20 +617,45 @@ using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.Remot
 //
 // #endregion
 
-#region State
+// #region State
+//
+// var button = new SmartphoneButton();
+//
+// button.Press(); // Turning on
+// button.State = new EnabledState();
+//
+// button.State = new PhotoState(true);
+// button.Press();
+//
+// button.State = new EnabledState();
+//
+// button.Press();
+// button.State = new DisabledState();
+//
+// #endregion
 
-var button = new SmartphoneButton();
+#region Strategy
 
-button.Press(); // Turning on
-button.State = new EnabledState();
+var shoppingCart = new ShoppingCart();
 
-button.State = new PhotoState(true);
-button.Press();
+// No discount for ya, son!
+shoppingCart.SetDiscountStrategy(new NoDiscount());
+var totalAmount1 = shoppingCart.CalculateTotal(700);
+Console.WriteLine($"Total price: {totalAmount1}$");
 
-button.State = new EnabledState();
+// Get this man a percentage discount!
+shoppingCart.SetDiscountStrategy(new PercentageDiscount(30));
+var totalAmount2 = shoppingCart.CalculateTotal(700);
+Console.WriteLine($"Total price: {totalAmount2}$");
 
-button.Press();
-button.State = new DisabledState();
+// Someone was given a 10$ gift card on his birthday. Good lord!
+// Alright my man, here's the deal: ANYTHING in this store costs FORTUNE.
+// You won't even get a freakin' memory stick with 10 bucks here.
+// All I can offer is a discount using this gift card.
+
+shoppingCart.SetDiscountStrategy(new FixedDiscount(10));
+var totalAmount3 = shoppingCart.CalculateTotal(75);
+Console.WriteLine($"Total price: {totalAmount3}$");
 
 #endregion
 
