@@ -56,6 +56,7 @@ using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.State.ConcreteStates;
 using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.Strategy.ConcreteStrategies;
+using DesignPatterns.Behavioral.TemplateMethod.ConcreteTemplates;
 using DesignPatterns.Structural.Flyweight;
 using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.RemoteControl;
 
@@ -634,28 +635,40 @@ using RemoteControl = DesignPatterns.Behavioral.Command.WithCommandPattern.Remot
 //
 // #endregion
 
-#region Strategy
+// #region Strategy
+//
+// var shoppingCart = new ShoppingCart();
+//
+// // No discount for ya, son!
+// shoppingCart.SetDiscountStrategy(new NoDiscount());
+// var totalAmount1 = shoppingCart.CalculateTotal(700);
+// Console.WriteLine($"Total price: {totalAmount1}$");
+//
+// // Get this man a percentage discount!
+// shoppingCart.SetDiscountStrategy(new PercentageDiscount(30));
+// var totalAmount2 = shoppingCart.CalculateTotal(700);
+// Console.WriteLine($"Total price: {totalAmount2}$");
+//
+// // Someone was given a 10$ gift card on his birthday. Good lord!
+// // Alright my man, here's the deal: ANYTHING in this store costs FORTUNE.
+// // You won't even get a freakin' memory stick with 10 bucks here.
+// // All I can offer is a discount using this gift card.
+//
+// shoppingCart.SetDiscountStrategy(new FixedDiscount(10));
+// var totalAmount3 = shoppingCart.CalculateTotal(75);
+// Console.WriteLine($"Total price: {totalAmount3}$");
+//
+// #endregion
 
-var shoppingCart = new ShoppingCart();
+#region Template Method
 
-// No discount for ya, son!
-shoppingCart.SetDiscountStrategy(new NoDiscount());
-var totalAmount1 = shoppingCart.CalculateTotal(700);
-Console.WriteLine($"Total price: {totalAmount1}$");
+var textDocumentProcessor = new TextDocumentProcessor();
+textDocumentProcessor.ProcessDocument();
 
-// Get this man a percentage discount!
-shoppingCart.SetDiscountStrategy(new PercentageDiscount(30));
-var totalAmount2 = shoppingCart.CalculateTotal(700);
-Console.WriteLine($"Total price: {totalAmount2}$");
+Console.WriteLine("----------------------------");
 
-// Someone was given a 10$ gift card on his birthday. Good lord!
-// Alright my man, here's the deal: ANYTHING in this store costs FORTUNE.
-// You won't even get a freakin' memory stick with 10 bucks here.
-// All I can offer is a discount using this gift card.
-
-shoppingCart.SetDiscountStrategy(new FixedDiscount(10));
-var totalAmount3 = shoppingCart.CalculateTotal(75);
-Console.WriteLine($"Total price: {totalAmount3}$");
+var spreadsheetDocumentProcessor = new SpreadsheetDocumentProcessor();
+spreadsheetDocumentProcessor.ProcessDocument();
 
 #endregion
 
